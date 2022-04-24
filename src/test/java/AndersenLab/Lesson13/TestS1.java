@@ -36,7 +36,7 @@ public class TestS1 {
         String Email = "//*[@id=\"request-service\"]/div[2]/div/div[2]/div/label/input";
         String Phone = "//*[@id=\"request-service\"]/div[2]/div/div[3]/label/input";
         String Comment = "//*[@id=\"request-service\"]/div[2]/div/div[4]/label/textarea";
-        String CommentE = "Test";
+
 
 
         WebElement BurgerB = driver.findElement(By.xpath(BurgerButton));
@@ -61,7 +61,10 @@ public class TestS1 {
         Inputphone.sendKeys("+375296584165");
         WebElement Inputcomment = driver.findElement(By.xpath(Comment));
         Inputcomment.sendKeys("Test");
-        Assert.assertEquals("Test", CommentE);
+        for(String Handle1 : driver.getWindowHandles()){
+            driver.switchTo().window(Handle1);
+        }
+        Assert.assertEquals("https://andersenlab.com/find-developers/java", driver.getCurrentUrl());
     }
 
     @After

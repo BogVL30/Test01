@@ -13,7 +13,6 @@ import java.time.Duration;
 public class TestS2 {
     public ChromeDriver driver;
     String Skype = "//*[@id=\"gatsby-focus-wrapper\"]/footer/section/div/section[3]/div/div[3]/div/a[1]";
-    String Email = "@gmail.com";
 
     @Before
     public void driver() {
@@ -27,7 +26,10 @@ public class TestS2 {
         driver.get("https://andersenlab.com/");
         WebElement Sk = driver.findElement(By.xpath(Skype));
         Sk.click();
-        Assert.assertEquals("@gmail.com",Email);
+        for(String Handle2 : driver.getWindowHandles()){
+            driver.switchTo().window(Handle2);
+        }
+        Assert.assertEquals("https://join.skype.com/aM8R4P4dNJdy", driver.getCurrentUrl());
     }
 
     @After
